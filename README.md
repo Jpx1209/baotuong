@@ -18,4 +18,4 @@
 ---
 
 ## 📌 NOTE
-> Nhóm TEAM 4  — Clas 12C3 (QTER)
+> Nhóm TEAM 4  — Class 12C3 (QTER)
