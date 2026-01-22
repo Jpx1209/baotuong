@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BÁO TƯỜNG | DẤU ẤN THANH XUÂN</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.65);
+      --gold: #ffd27d;
+      --pink: #ff6aa2;
+      --cyan: #6fe7ff;
+      --purple:#a78bfa;
+      --shadow: 0 30px 80px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
+
+    *{ box-sizing: border-box; margin:0; padding:0;}
+    html{ scroll-behavior:smooth;}
+    body{
+      font-family: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(111,231,255,.10), transparent 60%),
+                  radial-gradient(900px 700px at 90% 0%, rgba(255,106,162,.10), transparent 55%),
+                  radial-gradient(900px 700px at 60% 100%, rgba(167,139,250,.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* nền lấp lánh */
+    .stars{
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-3;
+      background:
+        radial-gradient(2px 2px at 15% 22%, rgba(255,255,255,.55) 40%, transparent 41%),
+        radial-gradient(2px 2px at 44% 18%, rgba(255,255,255,.35) 40%, transparent 41%),
+        radial-gradient(1.5px 1.5px at 78% 34%, rgba(255,255,255,.45) 40%, transparent 41%),
+        radial-gradient(1.5px 1.5px at 62% 76%, rgba(255,255,255,.35) 40%, transparent 41%),
+        radial-gradient(2px 2px at 20% 88%, rgba(255,255,255,.25) 40%, transparent 41%),
+        radial-gradient(1.2px 1.2px at 92% 80%, rgba(255,255,255,.25) 40%, transparent 41%);
+      opacity:.55;
+      filter: blur(.2px);
+    }
+
+
+    .blob{
+      position: fixed;
+      width: 680px; height:680px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .25;
+      z-index:-2;
+      animation: float 9s ease-in-out infinite;
+    }
+    .blob.one{
+      top:-220px; left:-260px;
+      background: radial-gradient(circle at 30% 30%, var(--cyan), transparent 60%);
+    }
+    .blob.two{
+      bottom:-260px; right:-260px;
+      background: radial-gradient(circle at 30% 30%, var(--pink), transparent 60%);
+      animation-delay: -3s;
+    }
+    @keyframes float{
+      0%,100%{ transform: translate(0,0) scale(1);}
+      50%{ transform: translate(30px, 25px) scale(1.05);}
+    }
+
+    /* header */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(7,10,18,.80), rgba(7,10,18,.35));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width: 1120px;
+      margin:0 auto;
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:42px;height:42px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(111,231,255,.95), rgba(167,139,250,.35) 40%, rgba(255,106,162,.25) 72%),
+        rgba(255,255,255,.06);
+      box-shadow: 0 14px 35px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .brand h1{
+      font-size: 14px;
+      letter-spacing: .5px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .brand p{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top:2px;
+    }
+
+    .navlinks{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .navlinks a{
+      text-decoration:none;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      transition: .25s ease;
+    }
+    .navlinks a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.18);
+    }
+
+
+    .audioBtn{
+      display:flex; align-items:center; gap:9px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.85);
+      cursor:pointer;
+      transition: .25s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .audioBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+    }
+    .dot{
+      width:9px;height:9px;border-radius:50%;
+      background: rgba(255,255,255,.35);
+      box-shadow: 0 0 0 0 rgba(111,231,255,.0);
+      transition:.25s ease;
+    }
+    .audioBtn.playing .dot{
+      background: var(--cyan);
+      box-shadow: 0 0 0 6px rgba(111,231,255,.12);
+    }
+
+
+    .wrap{
+      max-width: 1120px;
+      margin:0 auto;
+      padding: 22px 16px 70px;
+    }
+
+    /* hero */
+    .hero{
+      margin-top: 18px;
+      border-radius: calc(var(--radius) + 8px);
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(120deg, rgba(111,231,255,.20), rgba(167,139,250,.16), rgba(255,106,162,.16)),
+        rgba(255,255,255,.03);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(700px 380px at 18% 25%, rgba(255,210,125,.22), transparent 60%),
+        radial-gradient(600px 380px at 85% 35%, rgba(111,231,255,.18), transparent 60%),
+        radial-gradient(800px 420px at 55% 85%, rgba(255,106,162,.14), transparent 58%);
+      opacity:.95;
+      pointer-events:none;
+    }
+    .heroGrid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      padding: 30px 26px;
+    }
+
+    @media (max-width: 860px){
+      .heroGrid{ grid-template-columns: 1fr; }
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.85);
+      font-size: 12px;
+      width: fit-content;
+      backdrop-filter: blur(10px);
+    }
+    .spark{
+      width:10px;height:10px;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      border-radius: 4px;
+      transform: rotate(18deg);
+      box-shadow: 0 0 18px rgba(255,210,125,.25);
+    }
+
+    .title{
+      margin-top: 12px;
+      font-family: "Dancing Script", cursive;
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.0;
+      letter-spacing: .5px;
+      text-shadow: 0 25px 60px rgba(0,0,0,.55);
+    }
+    .subtitle{
+      margin-top: 10px;
+      max-width: 48ch;
+      color: rgba(255,255,255,.80);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .chip{
+      font-size: 12px;
+      color: rgba(255,255,255,.82);
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+
+    .heroCard{
+      position:relative;
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+      min-height: 240px;
+      overflow:hidden;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(111,231,255,.20), transparent 50%),
+        radial-gradient(circle at 70% 75%, rgba(255,106,162,.16), transparent 52%);
+      filter: blur(6px);
+      opacity:.9;
+    }
+    .heroCardInner{
+      position:relative;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      height:100%;
+    }
+
+    .photoGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .photo{
+      border-radius: 18px;
+      height: 120px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      position:relative;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      filter: contrast(1.08) saturate(1.1);
+      transform: scale(1.04);
+      transition: transform .35s ease;
+    }
+    .photo:hover img{
+      transform: scale(1.09);
+    }
+    .photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.45), transparent 60%);
+      pointer-events:none;
+    }
+    .cap{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      font-size:12px;
+      color: rgba(255,255,255,.88);
+      text-shadow: 0 10px 25px rgba(0,0,0,.75);
+    }
+
+    /* sections */
+    section{
+      margin-top: 22px;
+    }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin: 18px 0 12px;
+      padding: 0 4px;
+    }
+    .sectionTitle h2{
+      font-size: 18px;
+      letter-spacing: .3px;
+    }
+    .sectionTitle span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      padding: 16px 16px 14px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+      position:relative;
+      overflow:hidden;
+      min-height: 150px;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      background: var(--card2);
+      border-color: rgba(255,255,255,.18);
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.82);
+      font-weight:600;
+      font-size: 13px;
+    }
+    .kDot{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      box-shadow: 0 0 18px rgba(111,231,255,.25);
+    }
+    .card p{
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.76);
+    }
+    .quote{
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .quote::before{
+      content:"“";
+      position:absolute;
+      top:-25px;
+      left:10px;
+      font-size: 80px;
+      color: rgba(255,255,255,.10);
+      font-family: "Dancing Script", cursive;
+    }
+    .quote p{
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.86);
+    }
+    .quote small{
+      display:block;
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    /* timeline */
+    .timeline{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 820px){
+      .timeline{ grid-template-columns: 1fr; }
+    }
+    .timeItem{
+      border-radius: var(--radius);
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .timeItem::after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,210,125,.15), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(111,231,255,.12), transparent 55%);
+      filter: blur(8px);
+      opacity:.9;
+    }
+    .timeInner{ position:relative; }
+    .tag{
+      display:inline-flex;
+      padding: 6px 10px;
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.78);
+    }
+    .timeInner h3{
+      margin-top: 10px;
+      font-size: 15px;
+      letter-spacing: .2px;
+    }
+    .timeInner p{
+      margin-top: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,.76);
+      line-height: 1.7;
+    }
+
+    /* gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .g{
+      border-radius: 22px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      position:relative;
+      min-height: 170px;
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 20px 65px rgba(0,0,0,.35);
+      transition: transform .25s ease;
+    }
+    .g:hover{ transform: translateY(-3px); }
+    .g img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      filter: saturate(1.08) contrast(1.06);
+    }
+    .g::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.55), transparent 62%);
+    }
+    .g span{
+      position:absolute;
+      left:12px; bottom:10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.9);
+      text-shadow: 0 10px 25px rgba(0,0,0,.75);
+      z-index:2;
+    }
+    .g1{ grid-column: span 5; }
+    .g2{ grid-column: span 7; }
+    .g3{ grid-column: span 4; }
+    .g4{ grid-column: span 4; }
+    .g5{ grid-column: span 4; }
+    @media (max-width: 820px){
+      .g1,.g2,.g3,.g4,.g5{ grid-column: span 12; }
+    }
+
+    footer{
+      margin-top: 26px;
+      padding: 18px 6px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+    }
+
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .floatBtn{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display:flex;
+      gap:10px;
+      flex-direction:column;
+    }
+    .fab{
+      width: 48px; height:48px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.85);
+      cursor:pointer;
+      transition: .25s ease;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      user-select:none;
+    }
+    .fab:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.20);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+
+
+  <audio id="bgm" loop autoplay>
+
+    <source src="https://files.catbox.moe/h6demt.mp3" type="audio/mpeg">
+  </audio>
+
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>BÁO TƯỜNG • DẤU ẤN THANH XUÂN</h1>
+          <p>Một góc trời kỷ niệm của tập thể lớp 12C3</p>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#mo-dau">Mở đầu</a>
+        <a href="#goc-van">Góc văn</a>
+        <a href="#dong-thoi-gian">Dòng thời gian</a>
+        <a href="#thu-vien">Thư viện</a>
+        <a href="#loi-chuc">Lời chúc</a>
+        <div class="audioBtn" id="toggleAudio" title="Bật/Tắt nhạc">
+          <span class="dot"></span>
+          <span id="audioText">Bật nhạc</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="hero reveal" id="mo-dau">
+      <div class="heroGrid">
+        <div>
+          <div class="badge">
+            <span class="spark"></span>
+            <span>Chủ đề: <b>“Dấu Ấn Thanh Xuân”</b> • Năm học đáng nhớ</span>
+          </div>
+
+          <div class="title">Dấu Ấn<br/>Thanh Xuân</div>
+
+          <p class="subtitle">
+            Có những ngày bình thường, nhưng lại trở thành ký ức rực rỡ.
+            Báo tường này là nơi chúng ta cất giữ tiếng cười, sự cố gắng,
+            và cả những điều chưa kịp nói thành lời.
+          </p>
+
+          <div class="chips">
+            <div class="chip">✨ Kỷ niệm</div>
+            <div class="chip">📚 Tri thức</div>
+            <div class="chip">🤝 Tình bạn</div>
+            <div class="chip">🎯 Ước mơ</div>
+          </div>
+        </div>
+
+        <div class="heroCard">
+          <div class="heroCardInner">
+            <div class="kicker"><span class="kDot"></span>Khoảnh khắc trong tim</div>
+            <div class="photoGrid">
+              <div class="photo">
+                <img alt="ảnh kỷ niệm" src="https://6971b2210fbe657fd5e5fec4.imgix.net/boccha.jpg?w=1000&h=1000&ar=1000%3A1000"> #quá anime
+                <div class="cap">Một ngày cùng nhau</div>
+              </div>
+              <div class="photo">
+                <img alt="ảnh lớp" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
+                <div class="cap">Nụ cười tuổi học trò</div>
+              </div>
+            </div>
+            <div class="quote">
+              <p>“Thanh xuân không phải là khoảng thời gian… mà là một trạng thái của trái tim.”</p>
+              <small>— Lưu giữ điều đẹp nhất, theo cách dịu dàng nhất</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section id="goc-van" class="reveal">
+      <div class="sectionTitle">
+        <h2>Góc văn — Chữ đẹp & lòng người</h2>
+        <span>nhẹ nhàng • sâu sắc • không sến</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Thư gửi lớp</div>
+          <p>
+            Chúng ta từng bước qua những ngày mệt mỏi, có lúc hoang mang, có lúc bừng sáng.
+            Nhưng sau tất cả, điều còn đọng lại là: <b>chúng ta đã không bỏ cuộc</b>.
+            Cảm ơn vì đã cùng nhau tạo nên một tập thể thật “đáng tự hào”.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Những điều nhỏ xíu</div>
+          <p>
+            Là tiếng gọi nhau ngoài hành lang, là một lần nhường chỗ, là gói bánh chia đôi,
+            là câu “mày ổn không?” tưởng bình thường mà ấm áp.
+            <b>Chúng ta lớn lên từ những điều tử tế.</b>
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Một lời nhắc dịu dàng</div>
+          <p>
+            Đừng sợ mình chậm. Chỉ cần mình <b>đừng đứng yên</b>.
+            Mỗi ngày giỏi hơn hôm qua một chút — vậy là đủ để tự hào.
+          </p>
+        </article>
+      </div>
+
+      <div class="quote" style="margin-top:14px;">
+        <p>
+          “Nếu một ngày bạn mỏi, hãy nhớ: bạn đã từng vượt qua những ngày khó hơn thế.”
+        </p>
+        <small>— Không cần hoàn hảo, chỉ cần kiên trì</small>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="dong-thoi-gian" class="reveal">
+      <div class="sectionTitle">
+        <h2>Dòng thời gian — Hành trình của chúng ta</h2>
+        <span>từng mốc nhỏ • từng bước tiến</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeItem">
+          <div class="timeInner">
+            <span class="tag">🌱 Khởi đầu</span>
+            <h3>Ngày đầu tiên của năm học</h3>
+            <p>
+              Bỡ ngỡ, lạ lẫm, nhưng ai cũng mang theo một ước mơ nhỏ.
+              Rồi chúng ta gặp nhau — và mọi thứ bắt đầu có ý nghĩa.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeItem">
+          <div class="timeInner">
+            <span class="tag">🔥 Nỗ lực</span>
+            <h3>Những tuần “cày” hết mình</h3>
+            <p>
+              Bài kiểm tra, bài tập, deadline… có lúc muốn gục.
+              Nhưng nhờ nhau, chúng ta đứng dậy và làm lại.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeItem">
+          <div class="timeInner">
+            <span class="tag">🎉 Rực rỡ</span>
+            <h3>Kỷ niệm & tiếng cười</h3>
+            <p>
+              Có những khoảnh khắc không cần lý do — vẫn vui đến lạ.
+              Những ngày ấy chính là “màu” của thanh xuân.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeItem">
+          <div class="timeInner">
+            <span class="tag">🏁 Trưởng thành</span>
+            <h3>Cuối chặng đường</h3>
+            <p>
+              Khi nhìn lại, ta nhận ra:
+              chúng ta đã thay đổi — mạnh mẽ hơn, bình tĩnh hơn, bản lĩnh hơn.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="thu-vien" class="reveal">
+      <div class="sectionTitle">
+        <h2>Thư viện ảnh — Một trời kỷ niệm</h2>
+        <span>ảnh minh hoạ đẹp • vibe học đường</span>
+      </div>
+
+      <div class="gallery">
+        <div class="g g1">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80" alt="ảnh 1">
+          <span>Ngày chúng ta cùng cố gắng</span>
+        </div>
+        <div class="g g2">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80" alt="ảnh 2">
+          <span>Tình bạn là sức mạnh</span>
+        </div>
+        <div class="g g3">
+          <img src="https://images.unsplash.com/photo-1535982330050-f1c2fb79ff2e?auto=format&fit=crop&w=1400&q=80" alt="ảnh 3">
+          <span>Những trang vở tuổi thơ</span>
+        </div>
+        <div class="g g4">
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80" alt="ảnh 4">
+          <span>Ánh mắt của ước mơ</span>
+        </div>
+        <div class="g g5">
+          <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80" alt="ảnh 5">
+          <span>Khoảnh khắc không quên</span>
+        </div>
+      </div>
+
+      <div class="quote" style="margin-top:14px;">
+        <p>“Mai này có thể mỗi người một hướng, nhưng ký ức hôm nay vẫn sẽ luôn là nhà.”</p>
+        <small>— Dành tặng tập thể lớp thân yêu</small>
+      </div>
+    </section>
+
+
+    <section id="loi-chuc" class="reveal">
+      <div class="sectionTitle">
+        <h2>Lời chúc — Gửi tương lai của chúng ta</h2>
+        <span>ấm áp • tinh tế • mạnh mẽ</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Chúc thầy cô</div>
+          <p>
+            Kính chúc thầy cô thật nhiều sức khỏe và niềm vui.
+            Cảm ơn vì đã kiên nhẫn dìu dắt, vì những bài giảng không chỉ là kiến thức,
+            mà còn là <b>bài học làm người</b>.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Chúc tập thể lớp</div>
+          <p>
+            Mong chúng ta giữ mãi sự tử tế, tinh thần đoàn kết và lòng tự trọng.
+            Dù sau này ở đâu, làm gì, hãy nhớ:
+            <b>mình từng là một phần của nhau.</b>
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="kicker"><span class="kDot"></span>Chúc chính mình</div>
+          <p>
+            Mong bản thân đủ mạnh mẽ để bước tiếp,
+            đủ bình tĩnh để lựa chọn,
+            và đủ can đảm để theo đuổi điều mình tin.
+            <b>Không cần nhanh nhất — chỉ cần bền nhất.</b>
+          </p>
+        </article>
+      </div>
+
+      <div class="quote" style="margin-top:14px;">
+        <p>
+          “Hãy sống sao để một ngày nhìn lại, ta mỉm cười và nói:  
+          ‘Mình đã từng cố gắng hết lòng.’”
+        </p>
+        <small>— Thanh xuân đẹp nhất là thanh xuân không hối tiếc</small>
+      </div>
+
+      <footer>
+        © Báo tường lớp • Thiết kế phong cách hiện đại • Hiệu ứng mượt • Không rối mắt ✨
+      </footer>
+    </section>
+  </main>
+
+
+  <div class="floatBtn">
+    <div class="fab" id="toTop" title="Lên đầu trang">⬆</div>
+    <div class="fab" id="sparkle" title="Hiệu ứng lấp lánh">✨</div>
+  </div>
+
+  <script>
+
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el=>io.observe(el));
+
+
+    document.getElementById("toTop").addEventListener("click", ()=>{
+      window.scrollTo({ top:0, behavior:"smooth" });
+    });
+
+
+    const bgm = document.getElementById("bgm");
+    const btn = document.getElementById("toggleAudio");
+    const audioText = document.getElementById("audioText");
+    let playing = false;
+
+    btn.addEventListener("click", async ()=>{
+      try{
+        if(!playing){
+          await bgm.play(); // browser cần click để phát
+          playing = true;
+          btn.classList.add("playing");
+          audioText.textContent = "Tắt nhạc";
+          bgm.volume = 0.35;
+        }else{
+          bgm.pause();
+          playing = false;
+          btn.classList.remove("playing");
+          audioText.textContent = "Bật nhạc";
+        }
+      }catch(err){
+        alert("Trình duyệt đang chặn autoplay. Bạn hãy bấm lại nút 'Bật nhạc' nhé!");
+      }
+    });
+
+
+    const sparkleBtn = document.getElementById("sparkle");
+    sparkleBtn.addEventListener("click", ()=>{
+      const count = 16;
+      for(let i=0;i<count;i++){
+        const s = document.createElement("div");
+        s.style.position = "fixed";
+        s.style.left = (Math.random()*100) + "vw";
+        s.style.top  = (Math.random()*100) + "vh";
+        s.style.width = "6px";
+        s.style.height= "6px";
+        s.style.borderRadius = "50%";
+        s.style.background = "rgba(255,255,255,.85)";
+        s.style.boxShadow = "0 0 16px rgba(111,231,255,.35)";
+        s.style.zIndex = 99;
+        s.style.opacity = 0.9;
+        s.style.transform = "scale(1)";
+        s.style.transition = "transform .7s ease, opacity .7s ease";
+        document.body.appendChild(s);
+        requestAnimationFrame(()=>{
+          s.style.transform = "scale(2.6)";
+          s.style.opacity = 0;
+        });
+        setTimeout(()=>s.remove(), 750);
+      }
+    });
+  </script>
+</body>
+</html>
