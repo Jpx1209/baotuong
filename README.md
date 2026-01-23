@@ -8,7 +8,7 @@
 - Nguyễn Thái Bảo  
 - Mạc Hiếu Anh  
 - Đỗ Công Hiếu  
-- Trần Gia Huy  
+- Trần Gia Huy A 
 - Đàm Ngọc Hà  
 - Hoàng Phú Hiếu  
 - Trần Thị Phương Thảo  
