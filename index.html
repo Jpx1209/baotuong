@@ -4,26 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BÁO TƯỜNG | DẤU ẤN THANH XUÂN</title>
-
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-#snow{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* không cản click */
-  z-index: 3;           /* tuyết nằm trên nội dung */
-  opacity: 0.55;        /* độ nhẹ của tuyết */
-}
-
-
     :root{
-      --bg:#070A12;
+      --bg: #121B34;
       --card: rgba(255,255,255,.06);
       --card2: rgba(255,255,255,.08);
       --line: rgba(255,255,255,.12);
@@ -47,10 +34,9 @@
                   var(--bg);
       color: var(--text);
       overflow-x:hidden;
-      
     }
 
-    /* nền lấp lánh */
+
     .stars{
       position: fixed;
       inset:0;
@@ -65,8 +51,24 @@
         radial-gradient(1.2px 1.2px at 92% 80%, rgba(255,255,255,.25) 40%, transparent 41%);
       opacity:.55;
       filter: blur(.2px);
+      animation: twinkle 8s infinite alternate;
     }
 
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Tuyết rơi */
+    #snow{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.55;
+    }
 
     .blob{
       position: fixed;
@@ -91,7 +93,7 @@
       50%{ transform: translate(30px, 25px) scale(1.05);}
     }
 
-    /* header */
+    /* Header cải tiến */
     .topbar{
       position: sticky;
       top:0;
@@ -99,7 +101,14 @@
       backdrop-filter: blur(12px);
       background: linear-gradient(to bottom, rgba(7,10,18,.80), rgba(7,10,18,.35));
       border-bottom: 1px solid rgba(255,255,255,.06);
+      animation: slideDown 0.5s ease;
     }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
     .nav{
       max-width: 1120px;
       margin:0 auto;
@@ -120,7 +129,14 @@
         rgba(255,255,255,.06);
       box-shadow: 0 14px 35px rgba(0,0,0,.35);
       border:1px solid rgba(255,255,255,.10);
+      animation: logoGlow 3s infinite alternate;
     }
+
+    @keyframes logoGlow {
+      0% { box-shadow: 0 14px 35px rgba(0,0,0,.35); }
+      100% { box-shadow: 0 14px 35px rgba(111,231,255,.15); }
+    }
+
     .brand h1{
       font-size: 14px;
       letter-spacing: .5px;
@@ -155,7 +171,6 @@
       border-color: rgba(255,255,255,.18);
     }
 
-
     .audioBtn{
       display:flex; align-items:center; gap:9px;
       padding: 9px 12px;
@@ -181,8 +196,14 @@
     .audioBtn.playing .dot{
       background: var(--cyan);
       box-shadow: 0 0 0 6px rgba(111,231,255,.12);
+      animation: pulse 1.5s infinite;
     }
 
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(111,231,255,0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(111,231,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(111,231,255,0); }
+    }
 
     .wrap{
       max-width: 1120px;
@@ -190,7 +211,7 @@
       padding: 22px 16px 70px;
     }
 
-    /* hero */
+
     .hero{
       margin-top: 18px;
       border-radius: calc(var(--radius) + 8px);
@@ -201,7 +222,20 @@
       background:
         linear-gradient(120deg, rgba(111,231,255,.20), rgba(167,139,250,.16), rgba(255,106,162,.16)),
         rgba(255,255,255,.03);
+      animation: fadeInUp 0.8s ease;
     }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero::before{
       content:"";
       position:absolute; inset:0;
@@ -211,7 +245,14 @@
         radial-gradient(800px 420px at 55% 85%, rgba(255,106,162,.14), transparent 58%);
       opacity:.95;
       pointer-events:none;
+      animation: gradientMove 15s infinite alternate;
     }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
     .heroGrid{
       position:relative;
       display:grid;
@@ -236,13 +277,26 @@
       font-size: 12px;
       width: fit-content;
       backdrop-filter: blur(10px);
+      animation: badgePulse 2s infinite;
     }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
     .spark{
       width:10px;height:10px;
       background: linear-gradient(135deg, var(--gold), var(--pink));
       border-radius: 4px;
       transform: rotate(18deg);
       box-shadow: 0 0 18px rgba(255,210,125,.25);
+      animation: sparkle 1.5s infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
 
     .title{
@@ -253,7 +307,18 @@
       line-height: 1.0;
       letter-spacing: .5px;
       text-shadow: 0 25px 60px rgba(0,0,0,.55);
+      background: linear-gradient(to right, var(--gold), var(--pink), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: titleGlow 3s infinite alternate;
     }
+
+    @keyframes titleGlow {
+      0% { filter: brightness(1); }
+      100% { filter: brightness(1.2); }
+    }
+
     .subtitle{
       margin-top: 10px;
       max-width: 48ch;
@@ -275,6 +340,13 @@
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,.2);
     }
 
     .heroCard{
@@ -317,6 +389,7 @@
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
       position:relative;
+      cursor: pointer;
     }
     .photo img{
       width:100%;
@@ -342,9 +415,52 @@
       font-size:12px;
       color: rgba(255,255,255,.88);
       text-shadow: 0 10px 25px rgba(0,0,0,.75);
+      z-index: 2;
     }
 
-    /* sections */
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .close-lightbox:hover {
+      color: var(--cyan);
+    }
+
+
     section{
       margin-top: 22px;
     }
@@ -359,7 +475,21 @@
     .sectionTitle h2{
       font-size: 18px;
       letter-spacing: .3px;
+      position: relative;
+      display: inline-block;
     }
+    
+    .sectionTitle h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(to right, var(--cyan), var(--pink));
+      border-radius: 2px;
+    }
+    
     .sectionTitle span{
       font-size: 12px;
       color: var(--muted);
@@ -388,12 +518,30 @@
       position:relative;
       overflow:hidden;
       min-height: 150px;
+      cursor: pointer;
     }
     .card:hover{
       transform: translateY(-3px);
       background: var(--card2);
       border-color: rgba(255,255,255,.18);
+      box-shadow: 0 25px 65px rgba(0,0,0,.45);
     }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: 0.5s;
+    }
+    
+    .card:hover::before {
+      left: 100%;
+    }
+    
     .kicker{
       display:flex;
       align-items:center;
@@ -406,7 +554,14 @@
       width:10px;height:10px;border-radius:50%;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
       box-shadow: 0 0 18px rgba(111,231,255,.25);
+      animation: dotPulse 2s infinite;
     }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+    
     .card p{
       margin-top: 10px;
       font-size: 13px;
@@ -421,9 +576,15 @@
       border: 1px solid rgba(255,255,255,.12);
       position:relative;
       overflow:hidden;
+      transition: transform 0.3s ease;
     }
+    
+    .quote:hover {
+      transform: translateY(-2px);
+    }
+    
     .quote::before{
-      content:"“";
+      content:"";
       position:absolute;
       top:-25px;
       left:10px;
@@ -442,7 +603,7 @@
       color: var(--muted);
     }
 
-    /* timeline */
+    /* Timeline */
     .timeline{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -458,7 +619,13 @@
       border: 1px solid rgba(255,255,255,.12);
       position:relative;
       overflow:hidden;
+      transition: transform 0.3s ease;
     }
+    
+    .timeItem:hover {
+      transform: translateY(-3px);
+    }
+    
     .timeItem::after{
       content:"";
       position:absolute;
@@ -491,7 +658,7 @@
       line-height: 1.7;
     }
 
-    /* gallery */
+    /* Gallery */
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -506,14 +673,24 @@
       background: rgba(255,255,255,.04);
       box-shadow: 0 20px 65px rgba(0,0,0,.35);
       transition: transform .25s ease;
+      cursor: pointer;
     }
-    .g:hover{ transform: translateY(-3px); }
+    .g:hover{ 
+      transform: translateY(-3px);
+      box-shadow: 0 25px 75px rgba(0,0,0,.5);
+    }
     .g img{
       width:100%; height:100%;
       object-fit: cover;
       transform: scale(1.04);
       filter: saturate(1.08) contrast(1.06);
+      transition: transform 0.5s ease;
     }
+    
+    .g:hover img {
+      transform: scale(1.1);
+    }
+    
     .g::after{
       content:"";
       position:absolute; inset:0;
@@ -536,14 +713,108 @@
       .g1,.g2,.g3,.g4,.g5{ grid-column: span 12; }
     }
 
+    /* Progress scroll */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 100;
+    }
+    
+    .progress-bar {
+      height: 3px;
+      background: linear-gradient(to right, var(--cyan), var(--pink));
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+
+    .chat-box {
+      position: fixed;
+      bottom: 80px;
+      right: 16px;
+      width: 300px;
+      height: 400px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      z-index: 90;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .chat-header {
+      padding: 15px;
+      background: rgba(0,0,0,.2);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .close-chat {
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--muted);
+    }
+    
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    
+    .chat-input-container {
+      padding: 15px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    
+    .chat-input {
+      width: 100%;
+      padding: 10px 15px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      color: white;
+      font-size: 12px;
+      outline: none;
+    }
+    
+    .message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.05);
+      border-radius: 15px;
+      font-size: 12px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    
+    .message.user {
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(111,231,255,.2), rgba(167,139,250,.2));
+    }
+
     footer{
       margin-top: 26px;
       padding: 18px 6px 0;
       color: var(--muted);
       font-size: 12px;
       text-align:center;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 20px;
     }
-
 
     .reveal{
       opacity: 0;
@@ -554,7 +825,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
 
     .floatBtn{
       position: fixed;
@@ -584,6 +854,59 @@
       background: rgba(255,255,255,.09);
       border-color: rgba(255,255,255,.20);
     }
+    
+    .heart-btn {
+      animation: heartbeat 1.5s infinite;
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+
+    .countdown {
+      background: rgba(0,0,0,.3);
+      border-radius: 20px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    
+    .countdown-title {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: var(--muted);
+    }
+    
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .countdown-number {
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      min-width: 50px;
+    }
+    
+    .countdown-label {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
   </style>
 </head>
 
@@ -592,10 +915,35 @@
   <div class="blob one"></div>
   <div class="blob two"></div>
   <canvas id="snow"></canvas>
+  
 
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </div>
+  
+
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <div class="chat-title">Lời nhắn cho lớp</div>
+      <span class="close-chat" id="closeChat">&times;</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message">Chào mừng đến với góc tâm sự! Hãy viết điều gì đó cho tập thể lớp nhé ❤️</div>
+    </div>
+    <div class="chat-input-container">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Viết lời nhắn của bạn...">
+    </div>
+  </div>
 
   <audio id="bgm" loop autoplay>
-
     <source src="https://files.catbox.moe/h6demt.mp3" type="audio/mpeg">
   </audio>
 
@@ -625,6 +973,28 @@
 
   <main class="wrap">
 
+    <div class="countdown reveal">
+      <div class="countdown-title">Đếm ngược đến ngày tốt nghiệp</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">00</div>
+          <div class="countdown-label">Ngày</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">00</div>
+          <div class="countdown-label">Giờ</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">00</div>
+          <div class="countdown-label">Phút</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">00</div>
+          <div class="countdown-label">Giây</div>
+        </div>
+      </div>
+    </div>
+
     <div class="hero reveal" id="mo-dau">
       <div class="heroGrid">
         <div>
@@ -633,7 +1003,7 @@
             <span>Chủ đề: <b>“Dấu Ấn Thanh Xuân”</b> • Năm học đáng nhớ</span>
           </div>
 
-          <div class="title">Dấu Ấn<br/>Thanh Xuân</div>
+          <div class="title">Dấu ấn thanh xuân</div>
 
           <p class="subtitle">
             Có những ngày bình thường, nhưng lại trở thành ký ức rực rỡ.
@@ -653,11 +1023,11 @@
           <div class="heroCardInner">
             <div class="kicker"><span class="kDot"></span>Khoảnh khắc trong tim</div>
             <div class="photoGrid">
-              <div class="photo">
-                <img alt="ảnh kỷ niệm" src="https://6971b2210fbe657fd5e5fec4.imgix.net/boccha.jpg?w=1000&h=1000&ar=1000%3A1000"> #quá anime
+              <div class="photo" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/boccha.jpg?w=1000&h=1000&ar=1000%3A1000')">
+                <img alt="ảnh kỷ niệm" src="https://6971b2210fbe657fd5e5fec4.imgix.net/boccha.jpg?w=1000&h=1000&ar=1000%3A1000">
                 <div class="cap">Một ngày cùng nhau</div>
               </div>
-              <div class="photo">
+              <div class="photo" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
                 <img alt="ảnh lớp" src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736">
                 <div class="cap">Nụ cười tuổi học trò</div>
               </div>
@@ -671,7 +1041,6 @@
       </div>
     </div>
 
-
     <section id="goc-van" class="reveal">
       <div class="sectionTitle">
         <h2>Góc văn — Chữ đẹp & lòng người</h2>
@@ -679,25 +1048,25 @@
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Thư gửi lớp</div>
           <p>
             Chúng ta từng bước qua những ngày mệt mỏi, có lúc hoang mang, có lúc bừng sáng.
             Nhưng sau tất cả, điều còn đọng lại là: <b>chúng ta đã không bỏ cuộc</b>.
-            Cảm ơn vì đã cùng nhau tạo nên một tập thể thật “đáng tự hào”.
+            Cảm ơn vì đã cùng nhau tạo nên một tập thể thật "đáng tự hào".
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Những điều nhỏ xíu</div>
           <p>
             Là tiếng gọi nhau ngoài hành lang, là một lần nhường chỗ, là gói bánh chia đôi,
-            là câu “mày ổn không?” tưởng bình thường mà ấm áp.
+            là câu "mày ổn không?" tưởng bình thường mà ấm áp.
             <b>Chúng ta lớn lên từ những điều tử tế.</b>
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Một lời nhắc dịu dàng</div>
           <p>
             Đừng sợ mình chậm. Chỉ cần mình <b>đừng đứng yên</b>.
@@ -708,7 +1077,7 @@
 
       <div class="quote" style="margin-top:14px;">
         <p>
-          “Nếu một ngày bạn mỏi, hãy nhớ: bạn đã từng vượt qua những ngày khó hơn thế.”
+          "Nếu một ngày bạn mỏi, hãy nhớ: bạn đã từng vượt qua những ngày khó hơn thế."
         </p>
         <small>— Không cần hoàn hảo, chỉ cần kiên trì</small>
       </div>
@@ -736,7 +1105,7 @@
         <div class="timeItem">
           <div class="timeInner">
             <span class="tag">🔥 Nỗ lực</span>
-            <h3>Những tuần “cày” hết mình</h3>
+            <h3>Những tuần "cày" hết mình</h3>
             <p>
               Bài kiểm tra, bài tập, deadline… có lúc muốn gục.
               Nhưng nhờ nhau, chúng ta đứng dậy và làm lại.
@@ -750,7 +1119,7 @@
             <h3>Kỷ niệm & tiếng cười</h3>
             <p>
               Có những khoảnh khắc không cần lý do — vẫn vui đến lạ.
-              Những ngày ấy chính là “màu” của thanh xuân.
+              Những ngày ấy chính là "màu" của thanh xuân.
             </p>
           </div>
         </div>
@@ -768,7 +1137,6 @@
       </div>
     </section>
 
-
     <section id="thu-vien" class="reveal">
       <div class="sectionTitle">
         <h2>Thư viện ảnh — Một trời kỷ niệm</h2>
@@ -776,34 +1144,33 @@
       </div>
 
       <div class="gallery">
-        <div class="g g1">
+        <div class="g g1" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikka1.png?w=1920&h=1080')">
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikka1.png?w=1920&h=1080" alt="ảnh 1">
           <span>Ngày chúng ta cùng cố gắng</span>
         </div>
-        <div class="g g2">
+        <div class="g g2" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikka2.jpg?w=850&h=531')">
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikka2.jpg?w=850&h=531" alt="ảnh 2">
           <span>Tình bạn là sức mạnh</span>
         </div>
-        <div class="g g3">
+        <div class="g g3" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 3">
           <span>Những trang vở tuổi thơ</span>
         </div>
-        <div class="g g4">
+        <div class="g g4" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 4">
           <span>Ánh mắt của ước mơ</span>
         </div>
-        <div class="g g5">
+        <div class="g g5" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 5">
           <span>Khoảnh khắc không quên</span>
         </div>
       </div>
 
       <div class="quote" style="margin-top:14px;">
-        <p>“Mai này có thể mỗi người một hướng, nhưng ký ức hôm nay vẫn sẽ luôn là nhà.”</p>
+        <p>"Mai này có thể mỗi người một hướng, nhưng ký ức hôm nay vẫn sẽ luôn là nhà."</p>
         <small>— Dành tặng tập thể lớp thân yêu</small>
       </div>
     </section>
-
 
     <section id="loi-chuc" class="reveal">
       <div class="sectionTitle">
@@ -812,7 +1179,7 @@
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Chúc thầy cô</div>
           <p>
             Kính chúc thầy cô thật nhiều sức khỏe và niềm vui.
@@ -821,7 +1188,7 @@
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Chúc tập thể lớp</div>
           <p>
             Mong chúng ta giữ mãi sự tử tế, tinh thần đoàn kết và lòng tự trọng.
@@ -830,7 +1197,7 @@
           </p>
         </article>
 
-        <article class="card">
+        <article class="card" onclick="this.classList.toggle('active')">
           <div class="kicker"><span class="kDot"></span>Chúc chính mình</div>
           <p>
             Mong bản thân đủ mạnh mẽ để bước tiếp,
@@ -843,125 +1210,119 @@
 
       <div class="quote" style="margin-top:14px;">
         <p>
-          “Hãy sống sao để một ngày nhìn lại, ta mỉm cười và nói:  
-          ‘Mình đã từng cố gắng hết lòng.’”
+          "Hãy sống sao để một ngày nhìn lại, ta mỉm cười và nói:  
+          'Mình đã từng cố gắng hết lòng.'"
         </p>
         <small>— Thanh xuân đẹp nhất là thanh xuân không hối tiếc</small>
       </div>
 
       <footer>
-                © TEAM 4 • Vũ Bảo Tiên 
-Đinh Tùng Lâm, 
-Trần Đức Thành,
-Trịnh Minh Toàn,
-Nguyễn Thái Bảo,
-Mạc Hiếu Anh,
-Đỗ Công Hiếu ,
-Trần Gia Huy A ,
-Đàm Ngọc Hà ,
-Hoàng Phú Hiếu ,
-Trần Thị Phương Thảo , 
-Phạm Quang Minh ,
-Mạc Minh An ✨  
+        © TEAM 4 • Vũ Bảo Tiên 
+        Đinh Tùng Lâm, 
+        Trần Đức Thành,
+        Trịnh Minh Toàn,
+        Nguyễn Thái Bảo,
+        Mạc Hiếu Anh,
+        Đỗ Công Hiếu ,
+        Trần Gia Huy ,
+        Đàm Ngọc Hà ,
+        Hoàng Phú Hiếu ,
+        Trần Thị Phương Thảo , 
+        Phạm Quang Minh ,
+        Mạc Minh An ✨  
       </footer>
     </section>
   </main>
 
-
   <div class="floatBtn">
     <div class="fab" id="toTop" title="Lên đầu trang">⬆</div>
+    <div class="fab heart-btn" id="heartBtn" title="Gửi yêu thương">❤️</div>
+    <div class="fab" id="chatBtn" title="Góc tâm sự">💬</div>
     <div class="fab" id="sparkle" title="Hiệu ứng lấp lánh">✨</div>
   </div>
 
   <script>
+    // ====== SNOW FALL ======
+    const snowCanvas = document.getElementById("snow");
+    const ctx = snowCanvas.getContext("2d");
 
-  const snowCanvas = document.getElementById("snow");
-  const ctx = snowCanvas.getContext("2d");
-
-  let W, H, dpr;
-  function resizeSnow(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth;
-    H = window.innerHeight;
-    snowCanvas.width = Math.floor(W * dpr);
-    snowCanvas.height = Math.floor(H * dpr);
-    snowCanvas.style.width = W + "px";
-    snowCanvas.style.height = H + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  window.addEventListener("resize", resizeSnow);
-  resizeSnow();
-
-  // Cấu hình "không rối"
-  const SNOW_COUNT = Math.min(85, Math.floor(W / 12)); 
-  const snowflakes = [];
-  let wind = 0.2;       
-  let windTarget = 0.2; 
-
-  function rand(min, max){ return Math.random() * (max - min) + min; }
-
-  function createFlake(){
-    const r = rand(1.2, 3.2); 
-    return {
-      x: rand(0, W),
-      y: rand(-H, 0),
-      r,
-      vy: rand(0.8, 2.2),        
-      vx: rand(-0.25, 0.25),     
-      alpha: rand(0.25, 0.85),   
-      drift: rand(0.6, 1.5)      
-    };
-  }
-
-  for(let i=0;i<SNOW_COUNT;i++) snowflakes.push(createFlake());
-
-  let lastTime = performance.now();
-
-  function animateSnow(now){
-    const dt = Math.min(1.2, (now - lastTime) / 16.67); // ổn định FPS
-    lastTime = now;
-
-    ctx.clearRect(0, 0, W, H);
-
-    // Gió đổi nhẹ theo thời gian, không bị giật
-    if(Math.random() < 0.01) windTarget = rand(-0.6, 0.8);
-    wind += (windTarget - wind) * 0.01;
-
-    ctx.beginPath();
-    for(const f of snowflakes){
-      // cập nhật vị trí
-      f.y += f.vy * dt;
-      f.x += (f.vx + wind) * f.drift * dt;
-
-
-      f.x += Math.sin((f.y / 40)) * 0.15 * dt;
-
-
-      if(f.y > H + 10){
-        f.y = rand(-60, -10);
-        f.x = rand(0, W);
-      }
-      if(f.x < -20) f.x = W + 20;
-      if(f.x > W + 20) f.x = -20;
-
-
-      ctx.moveTo(f.x, f.y);
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    let W, H, dpr;
+    function resizeSnow(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      snowCanvas.width = Math.floor(W * dpr);
+      snowCanvas.height = Math.floor(H * dpr);
+      snowCanvas.style.width = W + "px";
+      snowCanvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
-    ctx.fill();
+    window.addEventListener("resize", resizeSnow);
+    resizeSnow();
 
-    // lớp glow nhẹ cho đẹp (không rối)
-    ctx.globalAlpha = 0.25;
-    ctx.filter = "blur(1px)";
-    ctx.fill();
-    ctx.filter = "none";
-    ctx.globalAlpha = 1;
+    const SNOW_COUNT = Math.min(85, Math.floor(W / 12));
+    const snowflakes = [];
+    let wind = 0.2;
+    let windTarget = 0.2;
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function createFlake(){
+      const r = rand(1.2, 3.2);
+      return {
+        x: rand(0, W),
+        y: rand(-H, 0),
+        r,
+        vy: rand(0.8, 2.2),
+        vx: rand(-0.25, 0.25),
+        alpha: rand(0.25, 0.85),
+        drift: rand(0.6, 1.5)
+      };
+    }
+
+    for(let i=0;i<SNOW_COUNT;i++) snowflakes.push(createFlake());
+
+    let lastTime = performance.now();
+
+    function animateSnow(now){
+      const dt = Math.min(1.2, (now - lastTime) / 16.67);
+      lastTime = now;
+
+      ctx.clearRect(0, 0, W, H);
+
+      if(Math.random() < 0.01) windTarget = rand(-0.6, 0.8);
+      wind += (windTarget - wind) * 0.01;
+
+      ctx.beginPath();
+      for(const f of snowflakes){
+        f.y += f.vy * dt;
+        f.x += (f.vx + wind) * f.drift * dt;
+        f.x += Math.sin((f.y / 40)) * 0.15 * dt;
+
+        if(f.y > H + 10){
+          f.y = rand(-60, -10);
+          f.x = rand(0, W);
+        }
+        if(f.x < -20) f.x = W + 20;
+        if(f.x > W + 20) f.x = -20;
+
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      }
+      ctx.fillStyle = "rgba(255,255,255,0.8)";
+      ctx.fill();
+
+      ctx.globalAlpha = 0.25;
+      ctx.filter = "blur(1px)";
+      ctx.fill();
+      ctx.filter = "none";
+      ctx.globalAlpha = 1;
+
+      requestAnimationFrame(animateSnow);
+    }
 
     requestAnimationFrame(animateSnow);
-  }
 
-  requestAnimationFrame(animateSnow);
 
     const reveals = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries)=>{
@@ -970,6 +1331,15 @@ Mạc Minh An ✨
       });
     }, { threshold: 0.12 });
     reveals.forEach(el=>io.observe(el));
+
+
+    const progressBar = document.getElementById("progressBar");
+    window.addEventListener("scroll", () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + "%";
+    });
 
 
     document.getElementById("toTop").addEventListener("click", ()=>{
@@ -985,7 +1355,7 @@ Mạc Minh An ✨
     btn.addEventListener("click", async ()=>{
       try{
         if(!playing){
-          await bgm.play(); 
+          await bgm.play();
           playing = true;
           btn.classList.add("playing");
           audioText.textContent = "Tắt nhạc";
@@ -1027,8 +1397,193 @@ Mạc Minh An ✨
         setTimeout(()=>s.remove(), 750);
       }
     });
+
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeLightbox = document.querySelector(".close-lightbox");
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.style.display = "flex";
+    }
+
+    closeLightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+
+    const chatBtn = document.getElementById("chatBtn");
+    const chatBox = document.getElementById("chatBox");
+    const closeChat = document.getElementById("closeChat");
+    const chatInput = document.getElementById("chatInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    chatBtn.addEventListener("click", () => {
+      chatBox.style.display = "flex";
+    });
+
+    closeChat.addEventListener("click", () => {
+      chatBox.style.display = "none";
+    });
+
+    chatInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && chatInput.value.trim() !== "") {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "message user";
+        messageDiv.textContent = chatInput.value;
+        chatMessages.appendChild(messageDiv);
+        chatInput.value = "";
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Auto reply after 1 second
+        setTimeout(() => {
+          const replies = [
+            "Cảm ơn bạn đã chia sẻ ❤️",
+            "Thanh xuân đẹp nhất khi có nhau!",
+            "Mãi mãi là một lớp ❤️",
+            "Nhớ mãi những kỷ niệm này!",
+            "Cố gắng hết mình nhé!",
+            "Tình bạn đẹp nhất là tình bạn học trò!",
+            "Chúng ta sẽ mãi luôn nhớ về nhau nhé !"
+          ];
+          const replyDiv = document.createElement("div");
+          replyDiv.className = "message";
+          replyDiv.textContent = replies[Math.floor(Math.random() * replies.length)];
+          chatMessages.appendChild(replyDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+      }
+    });
+
+
+    const heartBtn = document.getElementById("heartBtn");
+    heartBtn.addEventListener("click", () => {
+      for(let i=0;i<15;i++){
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = (Math.random()*80 + 10) + "vw";
+        heart.style.bottom = "80px";
+        heart.style.fontSize = (Math.random()*20 + 20) + "px";
+        heart.style.zIndex = 100;
+        heart.style.opacity = 1;
+        heart.style.transform = "translateY(0)";
+        heart.style.transition = "all 1.5s ease";
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.style.transform = "translateY(-100vh)";
+          heart.style.opacity = 0;
+        }, 10);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 1500);
+      }
+    });
+
+    // ====== COUNTDOWN TIMER ======
+function updateCountdown() {
+  // Set ngày thi: 11-12 tháng 6 năm 2026
+  const examDate = new Date("June 11, 2026 08:00:00").getTime(); // 8h sáng ngày 11/6/2026
+  const now = new Date().getTime();
+  const timeLeft = examDate - now;
+  
+  if (timeLeft > 0) {
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    
+
+    document.getElementById("countdownTitle").textContent = "Đếm ngược đến ngày thi THPT Quốc Gia 2026";
+    document.getElementById("examDateText").innerHTML = "Ngày thi: <span>11-12/6/2026</span>";
+  } else {
+    // Nếu đã qua ngày thi
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+    document.getElementById("countdownTitle").textContent = "🎉 Đã đến ngày thi! Chúc các bạn thi tốt!";
+  }
+}
+
+
+setInterval(updateCountdown, 1000);
+
+
+updateCountdown();
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+    const title = document.querySelector(".title");
+    const originalText = title.innerHTML;
+    title.innerHTML = "";
+    
+    let i = 0;
+    function typeWriter() {
+      if (i < originalText.length) {
+        title.innerHTML += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    
+    // Start typing after page loads
+    window.addEventListener("load", () => {
+      setTimeout(typeWriter, 1000);
+    });
+
+
+    const quotes = [
+      "Thanh xuân là những ngày tháng đẹp nhất đời người",
+      "Tuổi trẻ là hành trình, không phải đích đến",
+      "Những kỷ niệm đẹp nhất thường đến từ những điều giản dị",
+      "Cùng nhau chúng ta có thể tạo nên điều kỳ diệu",
+      "Hãy sống hết mình cho tuổi trẻ",
+      "Khoảnh khắc hôm nay sẽ là kỷ niệm ngày mai"
+    ];
+    
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    const quoteElement = document.createElement("div");
+    quoteElement.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.3);
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      border-left: 3px solid var(--cyan);
+      max-width: 300px;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    `;
+    quoteElement.textContent = `"${randomQuote}"`;
+    document.body.appendChild(quoteElement);
+    
+
+    setTimeout(() => {
+      quoteElement.style.opacity = "0";
+      quoteElement.style.transition = "opacity 1s";
+      setTimeout(() => quoteElement.remove(), 1000);
+    }, 10000);
   </script>
 </body>
 </html>
-
 
