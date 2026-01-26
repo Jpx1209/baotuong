@@ -59,7 +59,7 @@
       50% { opacity: 0.7; }
     }
 
-    /* Tuyết rơi */
+
     #snow{
       position: fixed;
       inset: 0;
@@ -93,7 +93,7 @@
       50%{ transform: translate(30px, 25px) scale(1.05);}
     }
 
-    /* Header cải tiến */
+
     .topbar{
       position: sticky;
       top:0;
@@ -713,7 +713,7 @@
       .g1,.g2,.g3,.g4,.g5{ grid-column: span 12; }
     }
 
-    /* Progress scroll */
+
     .progress-container {
       position: fixed;
       top: 0;
@@ -1242,7 +1242,7 @@
   </div>
 
   <script>
-    // ====== SNOW FALL ======
+
     const snowCanvas = document.getElementById("snow");
     const ctx = snowCanvas.getContext("2d");
 
@@ -1489,10 +1489,10 @@
       }
     });
 
-    // ====== COUNTDOWN TIMER ======
+
 function updateCountdown() {
-  // Set ngày thi: 11-12 tháng 6 năm 2026
-  const examDate = new Date("June 11, 2026 08:00:00").getTime(); // 8h sáng ngày 11/6/2026
+
+  const examDate = new Date("June 11, 2026 08:00:00").getTime();
   const now = new Date().getTime();
   const timeLeft = examDate - now;
   
@@ -1511,7 +1511,7 @@ function updateCountdown() {
     document.getElementById("countdownTitle").textContent = "Đếm ngược đến ngày thi THPT Quốc Gia 2026";
     document.getElementById("examDateText").innerHTML = "Ngày thi: <span>11-12/6/2026</span>";
   } else {
-    // Nếu đã qua ngày thi
+
     document.getElementById("days").textContent = "00";
     document.getElementById("hours").textContent = "00";
     document.getElementById("minutes").textContent = "00";
@@ -1543,7 +1543,7 @@ updateCountdown();
       }
     }
     
-    // Start typing after page loads
+
     window.addEventListener("load", () => {
       setTimeout(typeWriter, 1000);
     });
