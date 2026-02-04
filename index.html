@@ -59,7 +59,7 @@
       50% { opacity: 0.7; }
     }
 
-
+    /* Tuyết rơi */
     #snow{
       position: fixed;
       inset: 0;
@@ -93,7 +93,7 @@
       50%{ transform: translate(30px, 25px) scale(1.05);}
     }
 
-
+    /* Header cải tiến */
     .topbar{
       position: sticky;
       top:0;
@@ -603,7 +603,7 @@
       color: var(--muted);
     }
 
-
+    /* Timeline */
     .timeline{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -658,7 +658,7 @@
       line-height: 1.7;
     }
 
-
+    /* Gallery */
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -709,17 +709,11 @@
     .g3{ grid-column: span 4; }
     .g4{ grid-column: span 4; }
     .g5{ grid-column: span 4; }
-
-    .g6{ grid-column: span 4; }
-    .g7{ grid-column: span 4; }
-    .g8{ grid-column: span 4; }
-    .g9{ grid-column: span 6; }
-    .g10{ grid-column: span 6; }
     @media (max-width: 820px){
-      .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10{ grid-column: span 12; }
+      .g1,.g2,.g3,.g4,.g5{ grid-column: span 12; }
     }
 
-
+    /* Progress scroll */
     .progress-container {
       position: fixed;
       top: 0;
@@ -1006,7 +1000,7 @@
         <div>
           <div class="badge">
             <span class="spark"></span>
-            <span>Chủ đề: <b>Dấu Ấn Thanh Xuân</b> • Năm học đáng nhớ</span>
+            <span>Chủ đề: <b>“Dấu Ấn Thanh Xuân”</b> • Năm học đáng nhớ</span>
           </div>
 
           <div class="title">Dấu ấn thanh xuân</div>
@@ -1039,7 +1033,7 @@
               </div>
             </div>
             <div class="quote">
-              <p>Thanh xuân không phải là khoảng thời gian… mà là một trạng thái của trái tim.</p>
+              <p>“Thanh xuân không phải là khoảng thời gian… mà là một trạng thái của trái tim.”</p>
               <small>— Lưu giữ điều đẹp nhất, theo cách dịu dàng nhất</small>
             </div>
           </div>
@@ -1089,7 +1083,7 @@
       </div>
     </section>
 
-
+    <!-- TIMELINE -->
     <section id="dong-thoi-gian" class="reveal">
       <div class="sectionTitle">
         <h2>Dòng thời gian — Hành trình của chúng ta</h2>
@@ -1170,26 +1164,6 @@
           <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 5">
           <span>Khoảnh khắc không quên</span>
         </div>
-        <div class="g g6" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
-          <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 6">
-          <span>Những ngày tháng tươi đẹp</span>
-        </div>
-        <div class="g g7" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
-          <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 7">
-          <span>Hành trình cùng nhau</span>
-        </div>
-        <div class="g g8" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
-          <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 8">
-          <span>Kỷ niệm đáng nhớ</span>
-        </div>
-        <div class="g g9" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
-          <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 9">
-          <span>Thanh xuân rực rỡ</span>
-        </div>
-        <div class="g g10" onclick="openLightbox('https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736')">
-          <img src="https://6971b2210fbe657fd5e5fec4.imgix.net/rikkka123123.jpg?w=736&h=736" alt="ảnh 10">
-          <span>Tình bạn mãi mãi</span>
-        </div>
       </div>
 
       <div class="quote" style="margin-top:14px;">
@@ -1268,7 +1242,7 @@
   </div>
 
   <script>
-
+    // ====== SNOW FALL ======
     const snowCanvas = document.getElementById("snow");
     const ctx = snowCanvas.getContext("2d");
 
@@ -1468,7 +1442,7 @@
         chatInput.value = "";
         chatMessages.scrollTop = chatMessages.scrollHeight;
         
-
+        // Auto reply after 1 second
         setTimeout(() => {
           const replies = [
             "Cảm ơn bạn đã chia sẻ ❤️",
@@ -1515,30 +1489,42 @@
       }
     });
 
+    // ====== COUNTDOWN TIMER ======
+function updateCountdown() {
+  // Set ngày thi: 11-12 tháng 6 năm 2026
+  const examDate = new Date("June 11, 2026 08:00:00").getTime(); // 8h sáng ngày 11/6/2026
+  const now = new Date().getTime();
+  const timeLeft = examDate - now;
+  
+  if (timeLeft > 0) {
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    
 
-    function updateCountdown() {
-      // Set ngày thi: 11-12 tháng 6 năm 2026
-      const examDate = new Date("June 11, 2026 08:00:00").getTime();
-      const now = new Date().getTime();
-      const timeLeft = examDate - now;
-      
-      if (timeLeft > 0) {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        document.getElementById("days").textContent = days.toString().padStart(2, '0');
-        document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-      } else {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-      }
-    }
+    document.getElementById("countdownTitle").textContent = "Đếm ngược đến ngày thi THPT Quốc Gia 2026";
+    document.getElementById("examDateText").innerHTML = "Ngày thi: <span>11-12/6/2026</span>";
+  } else {
+    // Nếu đã qua ngày thi
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+    document.getElementById("countdownTitle").textContent = "🎉 Đã đến ngày thi! Chúc các bạn thi tốt!";
+  }
+}
+
+
+setInterval(updateCountdown, 1000);
+
+
+updateCountdown();
     
     setInterval(updateCountdown, 1000);
     updateCountdown();
@@ -1557,7 +1543,7 @@
       }
     }
     
-
+    // Start typing after page loads
     window.addEventListener("load", () => {
       setTimeout(typeWriter, 1000);
     });
